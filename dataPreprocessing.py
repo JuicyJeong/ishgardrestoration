@@ -1,50 +1,74 @@
 import numpy as np
 import pandas as pd
-
+import os
+import time
 #version_check
 # print(np.__version__)
 # print(pd.__version__)
-
 #----------------------------------#
 
-#file import #나중에 파일 경로 수정하는걸로 하자
-day1_data = pd.read_csv("points_2020-03-12.csv")
-# print(day1_data.head()) #데이터 프레임 확인.
+csv_list = os.listdir("original") #original 폴더에 있는 파일들을 읽어오기
+csv_list.sort() #오름차순 정렬
 
-#데이터 전처리.
-# day1_data = day1_data.drop(["Empty_2"],axis=1)
-day1_data["Day_Number"] = 1
-day1_data["Rank"] = 1
 
-temp_rank_number = 1
-temp_job_name = "tempjob"
-loop_number = 0
-#job 변수 선언 하고 for문으로 돌려버리기
+######지역변수 선언########
+csv_list_loop =0
+real_csv = []
+csv_listnumber = len(csv_list)
+######지역변수 선언######
 
-#Rank 끝까지 훑는동안 1-100까지 랭크 맞게 입력하기. job 변수 스캔하면서 같으면 += 1, 다르면 그 변수를 넣고 다시 1부터 시작.
+#csv 파일명 반복문 돌려서 리스트에 저장해두기(경로 포함)
+csv_listnumber = len(csv_list)
+while csv_list_loop < csv_listnumber:
+    real_csv.append("original/"+ csv_list[csv_list_loop])
+    csv_list_loop += 1
+print(real_csv)
 
-print(len(day1_data))
+csv_range = range(0,len(real_csv))
+print(csv_range)
 
-# print("직업이름" + day1_data["Job"].loc[12345])
 
-while loop_number <= len(day1_data):
-    if temp_job_name == day1_data["Job"][loop_number]:
-        day1_data["Rank"].loc[loop_number] = temp_rank_number
+### i 는 전체 for문에서 돌리는 반복 변수
+for i in csv_range:
+    # file import #나중에 파일 경로 수정하는걸로 하자
+    dayN_data = pd.read_csv(real_csv[i])
+    print(dayN_data.head()) #데이터 프레임 확인.
+
+    #데이터 전처리.
+    dayN_data = dayN_data.drop(["DC"], axis=1)
+    dayN_data["Day_Number"] = 1 #여기 변수처리 필요
+    dayN_data["Rank"] = 1
+
+    #임시변수 선언구역######
+    temp_rank_number = 1
+    temp_job_name = "tempjob"
+    loop_number = 0
+    temp_tuple = ('server','job')
+    temp_dic = dict()
+    print_time = time.time() #현재시간 호출, 일정시간간격마다 진행상황 확인하기 위한 While문 안쪽에서 확인하기.
+
+    #job 변수 선언 하고 for문으로 돌려버리기
+
+    day_len = len(dayN_data)
+    print(day_len)
+    while loop_number < day_len:
+        if temp_job_name == dayN_data["Job"].loc[loop_number]:
+            pass
+        else:
+            temp_rank_number = 1
+            temp_job_name = dayN_data["Job"].loc[loop_number]
+
+        dayN_data["Rank"].loc[loop_number] =temp_rank_number
         temp_rank_number += 1
-    else:
-        temp_job_name = day1_data["Job"].loc[loop_number]
-        temp_rank_number = 1
+        loop_number += 1
+
+        ##현재 진행상황을 확인하게 하는 구간
+        print_time_while = time.time()
+        if print_time + 3 < print_time_while:
+            print("현재 ", i + 1, "일차", loop_number, "번째 스캔중!")
+            print_time = print_time_while
+        ##현재 진행상황을 확인하게 하는 구간
 
 
-
-
-# for i in day1_data['Job']:
-#     if temp_job_name ==
-#     day1_data["Rank"] = temp_rank_number
-#     temp_rank_number += 1
-
-
-
-
-print(day1_data.head(15)) #데이터 프레임 확인.
-
+    print(dayN_data.head(20)) #데이터 프레임 확인.
+    dayN_data.to_csv("dataPreprocessing/day{0}_preprocessing.csv".format(i+1)) #여기도 리스트로 반환
