@@ -34,10 +34,11 @@ for i in csv_range:
     dayN_data = pd.read_csv(real_csv[i])
     print(dayN_data.head()) #데이터 프레임 확인.
 
-    #데이터 전처리.
+    #럼럼 전처리구역: 칼럼에 값 추가, 컬럼 대소문자 변경
     dayN_data = dayN_data.drop(["DC"], axis=1)
-    dayN_data["Day_Number"] = 1 #여기 변수처리 필요
+    dayN_data["Day_Number"] = i+1 #여기 변수처리 필요
     dayN_data["Rank"] = 1
+    dayN_data.rename(columns={'world': 'World'})
 
     #임시변수 선언구역######
     temp_rank_number = 1

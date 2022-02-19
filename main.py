@@ -1,17 +1,17 @@
-# This is a sample Python script.
+import requests
+import pandas as pd
+import json
+# 파일 형식: https://lalachievements.com/api/ranking/ishgard/서버/시즌/직업/일자
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+common_url = "https://lalachievements.com/api/ranking/ishgard/"
+server = 'Aegis'
+patch = 3
+job = "BSM"
+day = 2
+final_url = common_url+server+str(patch)+job+str(day)
+print(final_url)
 
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# a =1
+# b = "text"
+#
+# path = ""
