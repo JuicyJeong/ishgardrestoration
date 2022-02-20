@@ -61,12 +61,6 @@ for season_loop in range(3,5):
 #day값 추가하기
 
 
-# df = df.drop(["id","yesterdayRank","yesterdayScore",'iconUrl'],axis=1)
-# df['Day_Number'] = 1 # 여기 변수 처리해야함.
-# df.rename(columns={'worldId':'World','jobId':'Job','rank':'Rank','name':"Name",'score':'Points','change':'Change'},inplace = True)
-# df = df[['Day_Number','World','Job','Points',"Rank","Name"]]
-# print(df.head())
 
-# df.to_csv("samplecsv.csv")
 
 
