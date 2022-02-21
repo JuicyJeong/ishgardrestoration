@@ -29,13 +29,12 @@ print(world)
 # 돌릴때마다 콜해와서 저장하면 서버가 울지도 모르니까 api로 땡기는건 한번만 해갖고 와서 먼저 저장을 해두기.
 common_url = "https://lalachievements.com/api/ranking/ishgard/"
 # season_range = range(3,)
-temp_list = ['Adamantoise', 'Aegis', 'Alexander', 'Anima', 'Asura', 'Atomos', 'Bahamut', 'Balmung', 'Behemoth', 'Belias', 'Brynhildr', 'Cactuar', 'Carbuncle', 'Cerberus', 'Chocobo', 'Coeurl', 'Diabolos', 'Durandal', 'Excalibur', 'Exodus', 'Faerie', 'Famfrit', 'Fenrir', 'Garuda', 'Gilgamesh', 'Goblin', 'Gungnir', 'Hades', 'Hyperion', 'Ifrit', 'Ixion', 'Jenova', 'Kujata', 'Lamia', 'Leviathan', 'Lich', 'Louisoix', 'Malboro', 'Mandragora', 'Masamune', 'Mateus', 'Midgardsormr', 'Moogle', 'Odin', 'Omega', 'Pandaemonium',]
-for season_loop in range(3,5):
-    for day_loop in range(1,11):
+# temp_list = ['Adamantoise', 'Aegis', 'Alexander', 'Anima', 'Asura', 'Atomos', 'Bahamut', 'Balmung', 'Behemoth', 'Belias', 'Brynhildr', 'Cactuar', 'Carbuncle', 'Cerberus', 'Chocobo', 'Coeurl', 'Diabolos', 'Durandal', 'Excalibur', 'Exodus', 'Faerie', 'Famfrit', 'Fenrir', 'Garuda', 'Gilgamesh', 'Goblin', 'Gungnir', 'Hades', 'Hyperion', 'Ifrit', 'Ixion', 'Jenova', 'Kujata', 'Lamia', 'Leviathan', 'Lich', 'Louisoix', 'Malboro', 'Mandragora', 'Masamune', 'Mateus', 'Midgardsormr', 'Moogle', 'Odin', 'Omega', 'Pandaemonium',]
+for season_loop in range(2,3):
+    for day_loop in range(10,11):
         for world_loop in world:
-
-            if season_loop == 3 and day_loop == 1 and world_loop in temp_list:
-                continue
+            # if season_loop == 3 and day_loop == 1 and world_loop in temp_list:
+            #     continue
             for job_loop in job:
 
                 call_url = common_url+world_loop+"/"+str(season_loop)+'/'+job_loop+'/'+str(day_loop)

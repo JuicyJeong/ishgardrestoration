@@ -19,9 +19,8 @@ for temp_season_number in season_range:
         dir_path = "season"+str(temp_season_number)+"/day"+str(temp_day_number)+"/"
         csv_list = os.listdir(dir_path) #폴더에 있는 파일들을 읽어오기 #day별로 나뉘어져 있음. day를 변수로 바꿔야함.
         csv_list.sort() #오름차순 정렬
-        del csv_list[0]
+        del csv_list[0] # ds file 있어서 이걸 삭제.
         # print(csv_list) ### 월드_직업명으로 되어있는 리스트
-        #  #하나 콜해서 전처리를 먼저 시켜놓자.
 
         for csv_path in csv_list:
             csv_file_name = dir_path + csv_path
