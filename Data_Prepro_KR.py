@@ -11,8 +11,8 @@ loop_number = 0
 temp_job_name = "tempjob"
 #글로벌 선언
 
-for season_loop in range(2,3): #시즌 2는 따로 돌리자. day 3부터 있어서 조건문 처리 따로 나중에.
-    for day_loop in range(3,11):
+for season_loop in range(3,5): #시즌 2는 따로 돌리자. day 3부터 있어서 조건문 처리 따로 나중에.
+    for day_loop in range(1,11):
 
         common_path = "RawData/KRServer/KRJSON/Season"
         save_path =common_path +str(season_loop)+"/"+"Day"+str(day_loop)+".json"
@@ -52,6 +52,12 @@ for season_loop in range(2,3): #시즌 2는 따로 돌리자. day 3부터 있어
             save_df["Rank"].loc[loop_number] = temp_rank_number
             temp_rank_number += 1
             loop_number += 1
+
+        #루프 변수 한번 초기화 시켜서 다시 돌려주기#
+        temp_job_name = "tempjob"
+        loop_number = 0
+        #루프 변수 한번 초기화 시켜서 다시 돌려주기#
+
         #랭크 매기기
 
         #직업 대문자로 변환
